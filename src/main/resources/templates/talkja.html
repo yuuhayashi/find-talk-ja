@@ -12,7 +12,7 @@
   <body>
     <!-- ポイント：th:fragment -->
     <div th:fragment="home_query">
-      <form method="post" action="/talk-ja" th:object="${queryForm}">
+      <form method="post" action="/talk-ja/" th:object="${queryForm}">
         <label>検索クエリ</label>
         <div class="form-group">
           <input type="text" class="form-control" th:field="*{query}" />

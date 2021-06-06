@@ -10,16 +10,22 @@ import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import osm.surveyor.solr.AppProperties;
 
 @Repository
 public class TalkjaRepository {
+	@Autowired
+	private AppProperties appProperties;
+	
 	@SuppressWarnings("unchecked")
 	public List<Summary> findAll(String key) {
 		List<Summary> list = new ArrayList<>();
 		try {
 			// localhostのSolrに繋ぐ
-	    	SolrClient client = new HttpSolrClient.Builder("http://surveyor.mydns.jp/solr/talkja").build();
+	    	SolrClient client = new HttpSolrClient.Builder(appProperties.getSolrurl()).build();
 	    	SolrQuery query = new SolrQuery();
 	    	query.setQuery(key);
 	    	

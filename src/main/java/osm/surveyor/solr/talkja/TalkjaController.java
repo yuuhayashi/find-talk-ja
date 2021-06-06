@@ -21,7 +21,7 @@ public class TalkjaController {
      * GET用の処理.
      * http://localhost:8080/talk-ja
      */
-    @GetMapping("/talk-ja")
+    @GetMapping("/")
     public String getHome(@ModelAttribute QueryForm queryForm, Model model) {
     	
         // "talkja.html"に画面遷移
@@ -33,7 +33,7 @@ public class TalkjaController {
     /**
      * POST用の処理.
      */
-    @PostMapping("/talk-ja")
+    @PostMapping("/")
     public String postRequest(@ModelAttribute @Validated QueryForm queryForm, BindingResult bindingResult, Model model) {
     	if (bindingResult.hasErrors()) {
     		return getHome(queryForm, model);
