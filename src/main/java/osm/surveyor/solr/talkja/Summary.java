@@ -1,5 +1,6 @@
 package osm.surveyor.solr.talkja;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Data;
@@ -12,6 +13,6 @@ public class Summary {
 	private String title;
 	private String id;
 	private String name;
-	private String date;
-	private List<String> contents;
+	private String date = new String();
+	private List<String> contents = new ArrayList<String>();
 }

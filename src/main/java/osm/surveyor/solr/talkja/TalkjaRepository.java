@@ -1,11 +1,13 @@
 package osm.surveyor.solr.talkja;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
-import org.apache.solr.client.solrj.impl.HttpSolrServer;
+import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.springframework.stereotype.Repository;
@@ -17,16 +19,12 @@ public class TalkjaRepository {
 		List<Summary> list = new ArrayList<>();
 		try {
 			// localhostのSolrに繋ぐ
-	    	HttpSolrServer server = new HttpSolrServer("http://surveyor.mydns.jp/solr/talkja");
-
-			// 10秒でタイムアウトに設定
-			server.setConnectionTimeout(10000);
-
-			// 3回までリトライ
-			server.setMaxRetries(3);
-
+	    	SolrClient client = new HttpSolrClient.Builder("http://surveyor.mydns.jp/solr/talkja").build();
+	    	SolrQuery query = new SolrQuery();
+	    	query.setQuery(key);
+	    	
 			// 検索してみる
-			QueryResponse res = server.query(new SolrQuery(key));
+			QueryResponse res = client.query(query);
 			for(SolrDocument document : res.getResults()) {
 				Summary summary = new Summary();
 				summary.setPath((String)document.get("path"));
@@ -47,15 +45,12 @@ public class TalkjaRepository {
 							conts6.add(str);
 						}
 					}
+					summary.setContents(conts6);
 				}
-				else {
-					conts6.add("-");
-				}
-				summary.setContents(conts6);
 
 				list.add(summary);
 			}
-		} catch (SolrServerException e) {
+		} catch (SolrServerException | IOException e) {
 			e.printStackTrace();
 		}
 		return list;
