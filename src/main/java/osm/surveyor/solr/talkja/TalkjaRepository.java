@@ -36,16 +36,16 @@ public class TalkjaRepository {
 				summary.setDate((String)document.get("date"));
 				
 				List<String> contents = (List<String>)document.get("contents");
-				List<String> conts6 = new ArrayList<>();
+				List<String> conts9 = new ArrayList<>();
 				if (contents != null) {
 					int i = 0;
 					for (String str : contents) {
 						i++;
-						if (i <= 6) {
-							conts6.add(str);
+						if (i < 10) {
+							conts9.add(str);
 						}
 					}
-					summary.setContents(conts6);
+					summary.setContents(conts9);
 				}
 
 				list.add(summary);
