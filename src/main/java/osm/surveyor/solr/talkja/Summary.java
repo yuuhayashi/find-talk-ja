@@ -1,5 +1,7 @@
 package osm.surveyor.solr.talkja;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -10,5 +12,6 @@ public class Summary {
 	private String title;
 	private String id;
 	private String name;
-	private String _version_;
+	private String date;
+	private List<String> contents;
 }

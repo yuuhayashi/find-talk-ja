@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class TalkjaRepository {
+	@SuppressWarnings("unchecked")
 	public List<Summary> findAll(String key) {
 		List<Summary> list = new ArrayList<>();
 		try {
@@ -34,6 +35,8 @@ public class TalkjaRepository {
 				summary.setTitle((String)document.get("title"));
 				summary.setId((String)document.get("id"));
 				summary.setName((String)document.get("name"));
+				summary.setDate((String)document.get("date"));
+				summary.setContents((List<String>)document.get("contents"));
 				list.add(summary);
 			}
 		} catch (SolrServerException e) {

@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>osm.surveyor.solr</groupId>
   <artifactId>talk-ja</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
   <packaging>jar</packaging>
   <name>talk-ja</name>
   <description>talk-ja</description>

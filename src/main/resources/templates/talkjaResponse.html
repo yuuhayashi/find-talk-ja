@@ -12,22 +12,24 @@
   <body>
     <!-- ポイント：th:fragment -->
     <div th:fragment="home_contents">
-      <div class="page-header">
-        <h1>検索結果</h1>
-      </div>
       <table class="table table-bordered table-hover table-striped" >
         <tr>
-          <th class="info col-sm-2">ID</th>
-          <th class="info col-sm-2">Title</th>
-          <th class="info col-sm-2">Name</th>
-          <th class="info col-sm-2">URL</th>
+          <th class="info col-sm-1">ID</th>
+          <th class="info col-sm-4">Title</th>
+          <th class="info col-sm-1">Name</th>
+          <th class="info col-sm-1">Date</th>
         </tr>
-        <tr th:each="summary:${list}">
-          <td th:text="${summary.id}"></td>
-          <td th:text="${summary.title}"></td>
-          <td th:text="${summary.name}"></td>
-          <td><a th:href="${summary.url}">Link</a></td>
-        </tr>
+        <!--/*/ <div th:each="summary:${list}"> /*/-->
+          <tr>
+            <td rowspan="2"><a th:text="${summary.id}" th:href="${summary.url}">id</a></td>
+            <td th:text="${summary.title}"></td>
+            <td th:text="${summary.name}"></td>
+            <td th:text="${summary.dir}"></td>
+          </tr>
+          <tr>
+            <td colspan="3" th:text="${summary.contents}"></td>
+          </tr>
+        <!--/*/ </div> /*/-->
       </table>
       <ul>
         <li th:each="error : ${#fields.detailedErrors()}">
