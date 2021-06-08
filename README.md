@@ -1,5 +1,17 @@
 README
 
+"[メーリングリスト(Talk-ja)](https://lists.openstreetmap.org/listinfo/talk-ja)"の"[全文検索サービス](http://surveyor.mydns.jp/solr/#/talkja)"の"[検索クエリークライアント](http://surveyor.mydns.jp/talk-ja)"です。
+
+![image](etc/Talk-ja-SHOT.png)
+
+# Settings
+
+| name 							| default 	| comment 			|
+| ----------------------------- | ---------	| ------------------|
+| server.servlet.context-path	| /talk-ja	| コンテキスト名		|
+| server.port					| 8080		| port number		|
+| app.solrurl					| http://surveyor.mydns.jp/solr/talkja	| と言い併せ先検索エンジンへのURL |
+
 # INSTALL
 
 "Raspberry pi 3 B+"へのインストール
